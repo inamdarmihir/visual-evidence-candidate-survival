@@ -54,6 +54,35 @@ top‑10 moves only from 0.31 to 0.36 and was not significant.
 Cost on the T4: embedding 1,360 pages 328 s, Qdrant indexing 299 s, the whole rerank experiment 20 s; peak 2.3 GB VRAM,
 3.7 GB host RAM, 0.64 GB Qdrant data. Qdrant vs torch MeanMaxSim agree to 1.4e‑7.
 
+## Key takeaway (this domain only)
+
+On `computer_science` (110 queries, 1,360 pages, 1024 px, float32):
+
+- **The candidate stage is the bottleneck.** At B = 10 the reranker changes nothing (+0.000), because it can only
+  reorder what the dense stage passed on.
+- **Gains grow with the budget:** top‑10 recall rises by +0.063 (B = 25), +0.095 (B = 50) and +0.132 (B = 100) over
+  dense order, with 95 % CIs excluding zero.
+- **A small budget gets close to the full search:** reranking the dense top‑100 (0.715) is not statistically
+  distinguishable from late‑interaction scoring of the whole corpus (0.723).
+- **Not shown:** that this holds in other domains, at other resolutions or with other models, or that it improves
+  answer quality. Those are open (see [How to build on this](#how-to-build-on-this)).
+
+## The algorithm
+
+A standard two‑stage retrieve‑then‑rerank cascade; nothing here is a new method.
+
+1. **Stage 1, dense candidates.** Exact (non‑approximate) cosine search over the 1024‑d page vectors in Qdrant; keep the
+   top‑B pages.
+2. **Stage 2, late‑interaction rerank.** Server‑side `MAX_SIM` over the 128‑d token vectors of only those B pages
+   (ColBERT‑style MaxSim; see [`docs/REFERENCES.md`](docs/REFERENCES.md)):
+
+   `MeanMaxSim(q, p) = (1 / |q|) · Σ_i max_j ⟨q_i, p_j⟩`
+
+   where `q_i` are the valid query‑token vectors and `p_j` the page‑token vectors. Qdrant returns the sum; the kit
+   divides by `|q|` and checks it against `sentence_transformers.util.mean_maxsim`.
+3. **Measure.** For every annotated page, record whether it was lost at stage 1 (`candidate_loss`), lost by the rerank
+   (`reranking_loss`) or kept in the top‑k (`survived_top_k`).
+
 ## Quick start (Google Colab, free T4)
 
 1. Open the notebook with the badge above and select **Runtime → Change runtime type → T4 GPU**.
@@ -100,6 +129,19 @@ docs/                PROTOCOL, LIMITATIONS, ATTRIBUTION, SOURCES, REFERENCES, BL
 tests/               real-data tests (no synthetic fixtures)
 tools/build_notebook.py   regenerates the notebook from src/
 ```
+
+## How to build on this
+
+Each item is open work; none has been run.
+
+1. **Replicate across domains:** run section 15 of the notebook (`hr`, `physics`, `energy`, `pharmaceuticals`) and
+   `python -m vesk.aggregate`; check whether "top‑100 ≈ full late" holds.
+2. **Resolution:** run the 2048 px preset (the model default) and compare against 1024 px.
+3. **Swap the candidate generator:** replace the dense stage with BM25 or a hybrid, or the reranker with another
+   multivector model, keeping the same metrics and bootstrap.
+4. **Diagnose failures:** use the per‑page loss labels and `trace_viewer.html` to see which pages the dense stage
+   loses and which the rerank loses.
+5. **Beyond page recall:** connect survived pages to answer quality; this kit measures no answers.
 
 ## Limitations
 

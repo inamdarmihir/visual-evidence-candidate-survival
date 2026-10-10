@@ -26,6 +26,9 @@ cross-domain section of the notebook (hr / physics / energy) has **not** been ru
 - Coverage (every annotated page of a query in the top‑10): dense 0.309, B=100 0.364, full late 0.400. These coverage differences were not significant in the paired analysis; do not present them as gains.
 - Candidate-stage coverage (all annotated pages inside the B candidates): 0.309 / 0.391 / 0.509 / 0.673 for B = 10 / 25 / 50 / 100.
 
+## Takeaway (this domain only)
+The dense candidate stage limits what the rerank can recover: no change at B=10, and top‑10 recall gains of +0.063 / +0.095 / +0.132 at B=25 / 50 / 100. Reranking the top‑100 is not distinguishable from full-corpus late interaction here. This is one domain, one resolution, one model; it is not evidence for other settings.
+
 ## Limits that must travel with the numbers
 1. **Top‑k ceiling.** Median query has 4 annotated pages but 10 queries have more than 10 (max 21). Best possible top‑10 macro recall is ≈ 0.974 and best possible coverage ≈ 0.909, so part of the "lost by rerank" share is unavoidable.
 2. **Judgments are incomplete.** Unjudged pages are not known negatives; recall is a lower bound on true evidence recall.
