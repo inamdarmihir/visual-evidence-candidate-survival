@@ -1,0 +1,97 @@
+{
+  "divisor": "Qdrant MAX_SIM sum divided by valid query-token count (constant per query; never doc tokens)",
+  "extra_zero_padding_rows_exercised": 64,
+  "max_abs_cpu_vs_device_ref": 8.940696716308594e-08,
+  "max_abs_masked_extra_padding_vs_ref": 0.0,
+  "max_abs_masked_vs_unmasked_padded_docs": 0.0,
+  "max_abs_qdrant_vs_ref": 1.3551693867075443e-07,
+  "max_abs_ref_vs_unpadded_direct": 8.940696716308594e-08,
+  "min_over_query_tokens_of_best_page_sim": 0.1052187979221344,
+  "negative_best_similarity_present": false,
+  "page_token_counts": [
+    834,
+    834,
+    834,
+    834,
+    834,
+    834,
+    834,
+    834
+  ],
+  "pages": [
+    0,
+    194,
+    388,
+    582,
+    776,
+    970,
+    1164,
+    1359
+  ],
+  "passed": true,
+  "queries": [
+    130,
+    158,
+    180,
+    182,
+    183,
+    1191
+  ],
+  "query_token_counts": [
+    23,
+    30,
+    25,
+    15,
+    21,
+    47
+  ],
+  "rank_mismatches_beyond_ties": 0,
+  "real_page_lengths_all_equal": true,
+  "reference_device": "cuda",
+  "rows": [
+    {
+      "max_abs_diff_qdrant_vs_ref": 5.762863158897957e-08,
+      "q_tokens": 23,
+      "query_id": 130,
+      "rank_mismatches": 0,
+      "rank_ties": 0
+    },
+    {
+      "max_abs_diff_qdrant_vs_ref": 5.3309758496489223e-08,
+      "q_tokens": 30,
+      "query_id": 158,
+      "rank_mismatches": 0,
+      "rank_ties": 0
+    },
+    {
+      "max_abs_diff_qdrant_vs_ref": 7.88699340836807e-08,
+      "q_tokens": 25,
+      "query_id": 180,
+      "rank_mismatches": 0,
+      "rank_ties": 0
+    },
+    {
+      "max_abs_diff_qdrant_vs_ref": 6.650238038030665e-08,
+      "q_tokens": 15,
+      "query_id": 182,
+      "rank_mismatches": 0,
+      "rank_ties": 0
+    },
+    {
+      "max_abs_diff_qdrant_vs_ref": 1.3551693867075443e-07,
+      "q_tokens": 21,
+      "query_id": 183,
+      "rank_mismatches": 0,
+      "rank_ties": 0
+    },
+    {
+      "max_abs_diff_qdrant_vs_ref": 6.523680184944425e-08,
+      "q_tokens": 47,
+      "query_id": 1191,
+      "rank_mismatches": 0,
+      "rank_ties": 0
+    }
+  ],
+  "score_atol": 0.0001,
+  "tie_atol": 1e-05
+}

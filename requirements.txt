@@ -1,0 +1,13 @@
+# Exact pins requested for this experiment. Supporting packages are resolved by pip against the runtime;
+# the full resolved set is recorded per run in runs/<id>/pip_freeze.txt and run_manifest.json.
+transformers==5.19.0
+sentence-transformers==6.1.0
+qdrant-client==1.19.1
+datasets==5.1.0
+# torch / torchvision are NOT listed: use the runtime's existing GPU build (Colab T4). transformers' NeoMME image
+# processor requires torchvision. The notebook writes a constraints file freezing the installed torch/torchvision so
+# pip can never swap the CUDA wheel.
+psutil
+pillow
+matplotlib
+tqdm

@@ -1,0 +1,13 @@
+language,query_generator,n_rows,used_for_primary_evaluation
+english,human,110,True
+english,sdg,105,False
+french,human,110,False
+french,sdg,105,False
+german,human,110,False
+german,sdg,105,False
+italian,human,110,False
+italian,sdg,105,False
+portuguese,human,110,False
+portuguese,sdg,105,False
+spanish,human,110,False
+spanish,sdg,105,False

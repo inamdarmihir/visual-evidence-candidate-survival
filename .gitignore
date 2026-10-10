@@ -1,0 +1,11 @@
+.venv/
+.hf_cache/
+.qdrant_bin/
+smoke_work/
+.pytest_cache/
+__pycache__/
+*.pyc
+.DS_Store
+# Page images are third-party (OpenStax) material: not redistributed by default. See docs/ATTRIBUTION.md.
+**/thumbs/
+*.npz

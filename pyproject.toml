@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vesk"
+version = "0.1.0"
+description = "Visual Evidence Candidate-Survival Kit: dense-candidate -> late-interaction rerank diagnostics on ViDoRe v3 (Qdrant + NeoMME)"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+  "transformers==5.19.0", "sentence-transformers==6.1.0", "qdrant-client==1.19.1", "datasets==5.1.0",
+  "numpy", "pandas", "matplotlib", "tqdm", "psutil", "pillow",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "nbformat", "nbclient", "ipykernel"]
+
+[project.scripts]
+vesk = "vesk.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

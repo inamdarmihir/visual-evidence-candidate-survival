@@ -1,0 +1,27 @@
+{
+  "assumptions": "projection = mean measured s/page x page count on THIS device and preset; ignores image-decode variance, thermal/shared-GPU throttling and session limits; no other device's throughput is borrowed",
+  "device": "cuda",
+  "mean_tokens": 834.0,
+  "pages": [
+    65,
+    178,
+    209,
+    228,
+    285,
+    457,
+    501,
+    563,
+    864,
+    1116,
+    1209,
+    1309
+  ],
+  "peak_rss_gb": 3.197059072,
+  "peak_vram_allocated_gb": 2.263886336,
+  "peak_vram_reserved_gb": 2.350907392,
+  "projected_full_corpus_pages": 1360,
+  "projected_full_minutes": 4.196980352777625,
+  "seconds_per_page_mean": 0.1851608979166599,
+  "seconds_per_page_std": 0.0041268106700694095,
+  "warmup_page": 51
+}

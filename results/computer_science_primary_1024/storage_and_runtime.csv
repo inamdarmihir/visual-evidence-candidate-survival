@@ -1,0 +1,27 @@
+metric,value,unit,notes
+pages_embedded,1360.0,count,
+valid_page_vectors_total,1134240.0,vectors,all attention-mask==1 rows; special/row tokens kept
+valid_page_vectors_mean,834.0,vectors/page,
+valid_page_vectors_min,834.0,vectors/page,
+valid_page_vectors_max,834.0,vectors/page,
+computed_late_storage_fp32,580730880.0,bytes,sum(valid_tokens)*128*4
+computed_dense_storage_fp32,5570560.0,bytes,pages*1024*4
+actual_page_cache_on_disk,607195136.0,bytes,"npz shards incl. dense, valid_index, input_ids, markers"
+actual_query_cache_on_disk,2748416.0,bytes,
+embed_seconds_per_page_mean,0.19188703601691207,s,"measured, this device"
+embed_seconds_per_page_median,0.18818349850005234,s,"measured, this device"
+embed_seconds_total_sum_of_pages,260.9663689830004,s,sum over page batches (cache resumes may span sessions)
+query_vectors_total,2840.0,vectors,includes <mask> expansion tokens
+free_disk_now,71800209408.0,bytes,
+host_ram_available_now,9596895232.0,bytes,
+actual_qdrant_dir_on_disk,641261568.0,bytes,storage + snapshots + logs
+peak_rss_gb,3711078400.0,bytes,"this process, since start (calibration/embedding only if run in this session)"
+peak_vram_allocated_gb,2263886336.0,bytes,"this process, since start (calibration/embedding only if run in this session)"
+peak_vram_reserved_gb,2350907392.0,bytes,"this process, since start (calibration/embedding only if run in this session)"
+time_load_data,45.911604979,s,wall clock
+time_load_model,3.0999292760000117,s,wall clock
+time_embed_queries,2.689704544000051,s,wall clock
+time_embed_pages,327.8861616639999,s,wall clock
+time_qdrant_index,299.07122434099983,s,wall clock
+time_rerank_experiment,20.366017792000093,s,wall clock
+time_full_late_reference_SEPARATE,5.106669821000196,s,wall clock
